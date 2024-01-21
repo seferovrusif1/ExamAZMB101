@@ -20,17 +20,19 @@
 <body>
 
     <h2>List </h2>
-
+    <h4> <a asp-action="Create"  asp-area="Admin" asp-controller="Home">Create Item</a></h4>
     <table>
         <tr>
             <th>Id</th>
             <th>Title</th>
             <th>Description</th>
-            <th>ImagePath</th>
+            <th>ImagePath </th>
             <th>Category</th>
             <th>IsDeleted</th>
             <th>Update</th>
             <th>Delete</th>
+            <th>SoftDelete</th>
+            <th>ReverseSoftDelete</th>
         </tr>
         @foreach(var item in Model)
         {
@@ -38,11 +40,13 @@
             <td>@item.Id</td>
             <td>@item.Title</td>
             <td>@item.Description</td>
-            <td>@item.ImagePath</td>
+                <td><img src="~/@item.ImagePath"  width="80px"/></td>
             <td>@item.Category</td>
             <td>@item.IsDeleted</td>
-            <td><a asp-action="Update" asp-area="Admin" asp-controller="Home" >Update</a></td>
-            <td><a asp-action="Delete" asp-area="Admin" asp-controller="Home">Delete</a></td>
+            <td><a asp-action="Update" asp-area="Admin" asp-controller="Home" asp-route-id="@item.Id" >Update</a></td>
+                <td><a asp-action="Delete" asp-area="Admin" asp-controller="Home" asp-route-id="@item.Id">Delete</a></td>
+                <td><a asp-action="SoftDelete" asp-area="Admin" asp-controller="Home" asp-route-id="@item.Id">SoftDelete</a></td>
+                <td><a asp-action="ReverseSoftDelete" asp-area="Admin" asp-controller="Home" asp-route-id="@item.Id">ReverseSoftDelete</a></td>
           
         </tr>
             

@@ -1,4 +1,4 @@
-﻿@model ItemCreateVM
+﻿@model ItemUpdateVM
 <form style="width: 26rem;" method="post" enctype="multipart/form-data">
     <!-- Name input -->
     <div data-mdb-input-init asp-class="form-outline mb-4">
@@ -12,13 +12,13 @@
         <span asp-validation-for="Description" class="text-danger"></span>
     </div>
     <div data-mdb-input-init asp-class="form-outline mb-4">
-        <input accept="image/*" type="file" asp-for="ImagePath" id="form4Example1" class="form-control" />
+        <input type="file" accept="image/*" asp-for="ImagePath" id="form4Example1" class="form-control" />
         <label class="form-label">ImagePath</label>
         <span asp-validation-for="ImagePath" class="text-danger"></span>
     </div>
     <div data-mdb-input-init asp-class="form-outline mb-4">
-        <select  asp-for="Category"  asp-items='@new SelectList(ViewBag.Category,"Id","Name")'>Category</select>
-        
+        <select asp-for="Category" asp-items='@new SelectList(ViewBag.Category,"Id","Name")'>Category</select>
+
         <label class="form-label">Category</label>
         <span asp-validation-for="Category" class="text-danger"></span>
     </div>

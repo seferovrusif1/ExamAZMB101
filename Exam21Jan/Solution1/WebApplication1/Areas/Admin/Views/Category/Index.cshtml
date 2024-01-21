@@ -1,0 +1,56 @@
+﻿@model IEnumerable<CategoryListItem>
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h2>List </h2>
+    <h4> <a asp-action="Create" asp-area="Admin" asp-controller="Category">Create Category</a></h4>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>IsDeleted</th>
+            <th>Update</th>
+            <th>Delete</th>
+            <th>SoftDelete</th>
+            <th>ReverseSoftDelete</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.IsDeleted</td>
+                <td><a asp-action="Update" asp-area="Admin" asp-controller="Category" asp-route-id="@item.Id">Update</a></td>
+                <td><a asp-action="Delete" asp-area="Admin" asp-controller="Category" asp-route-id="@item.Id">Delete</a></td>
+                <td><a asp-action="SoftDelete" asp-area="Admin" asp-controller="Category" asp-route-id="@item.Id">SoftDelete</a></td>
+                <td><a asp-action="ReverseSoftDelete" asp-area="Admin" asp-controller="Category" asp-route-id="@item.Id">ReverseSoftDelete</a></td>
+
+            </tr>
+
+        }
+    </table>
+
+</body>
+</html>
+
+
+
+
+

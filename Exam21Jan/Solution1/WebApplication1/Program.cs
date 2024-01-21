@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Context;
+using WebApplication1.Helpers;
 using WebApplication1.Models;
 
 namespace WebApplication1
@@ -40,7 +41,7 @@ namespace WebApplication1
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-
+            PathConstants.RoothPath = builder.Environment.WebRootPath;
             app.Run();
         }
     }
