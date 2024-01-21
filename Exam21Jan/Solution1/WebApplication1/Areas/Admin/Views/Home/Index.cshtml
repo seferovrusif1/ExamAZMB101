@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ListItemVM>
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h2>List </h2>
+
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>ImagePath</th>
+            <th>Category</th>
+            <th>IsDeleted</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        @foreach(var item in Model)
+        {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Title</td>
+            <td>@item.Description</td>
+            <td>@item.ImagePath</td>
+            <td>@item.Category</td>
+            <td>@item.IsDeleted</td>
+            <td><a asp-action="Update" asp-area="Admin" asp-controller="Home" >Update</a></td>
+            <td><a asp-action="Delete" asp-area="Admin" asp-controller="Home">Delete</a></td>
+          
+        </tr>
+            
+        }
+    </table>
+
+</body>
+</html>
+
+
+
+
+
