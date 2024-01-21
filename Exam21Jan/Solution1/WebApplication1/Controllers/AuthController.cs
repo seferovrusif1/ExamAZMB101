@@ -95,6 +95,12 @@ namespace WebApplication1.Controllers
             await _signInManager.SignInAsync(user, true);
                 return RedirectToAction(nameof(Index),"Home");
         }
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction(nameof(Index), "Home");
+
+        }
         public async Task<bool> CreateInitial()
         {
             foreach (var item in Enum.GetValues(typeof(Roles)))

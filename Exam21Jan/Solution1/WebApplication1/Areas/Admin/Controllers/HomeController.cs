@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Areas.Admin.ViewModels.ItemVMs;
 using WebApplication1.Context;
 using WebApplication1.Helpers;
@@ -7,6 +8,8 @@ using WebApplication1.Models;
 namespace WebApplication1.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles="Admin")]
+    
     public class HomeController : Controller
     {
         Exam21JanDBContext _db { get; }
@@ -78,7 +81,7 @@ namespace WebApplication1.Areas.Admin.Controllers
             {
                 Title=data.Title,
                 Description=data.Description,
-                //ImagePath=data.ImagePath,
+                LastImg=data.ImagePath
                 
             });
         }
@@ -110,6 +113,10 @@ namespace WebApplication1.Areas.Admin.Controllers
             var data = _db.Items.FindAsync(id).Result;
             data.Title = vm.Title;
             data.Description = vm.Description;
+            if (System.IO.File.Exists(Path.Combine(PathConstants.RoothPath, data.ImagePath)))
+            {
+                System.IO.File.Delete(Path.Combine(PathConstants.RoothPath, data.ImagePath));
+            }
             data.ImagePath =await vm.ImagePath.ImageSaveAsync(PathConstants.ImageFolder);
             data.CategoryId=vm.Category;
             await _db.SaveChangesAsync();
@@ -119,6 +126,10 @@ namespace WebApplication1.Areas.Admin.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var data = _db.Items.FindAsync(id).Result;
+            if(System.IO.File.Exists(Path.Combine(PathConstants.RoothPath, data.ImagePath)))
+            {
+                System.IO.File.Delete(Path.Combine(PathConstants.RoothPath, data.ImagePath));
+            }
             _db.Items.Remove(data);
             _db.SaveChanges();
             return RedirectToAction(nameof(Index), "Home");

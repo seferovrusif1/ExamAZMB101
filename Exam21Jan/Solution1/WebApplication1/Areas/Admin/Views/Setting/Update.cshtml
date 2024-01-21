@@ -1,0 +1,14 @@
+﻿@using WebApplication1.Areas.Admin.ViewModels;
+@model SettingVM
+<form style="width: 26rem;" method="post" enctype="multipart/form-data">
+    <!-- Name input -->
+    <div data-mdb-input-init asp-class="form-outline mb-4">
+        <input type="file" accept="image/*" asp-for="logo" id="form4Example1" class="form-control" />
+        <label class="form-label">Logo</label>
+        <span asp-validation-for="logo" class="text-danger"></span>
+    </div>
+   
+
+    <!-- Submit button -->
+    <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block mb-4">Submit</button>
+</form>

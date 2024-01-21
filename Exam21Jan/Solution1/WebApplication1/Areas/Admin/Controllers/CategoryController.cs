@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Areas.Admin.ViewModels.CategoriesVMs;
 using WebApplication1.Areas.Admin.ViewModels.ItemVMs;
 using WebApplication1.Context;
@@ -8,6 +9,7 @@ using WebApplication1.Models;
 namespace WebApplication1.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles="Admin")]
     public class CategoryController : Controller
     {
         Exam21JanDBContext _db { get; }

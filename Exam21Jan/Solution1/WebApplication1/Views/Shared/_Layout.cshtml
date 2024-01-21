@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@inject SettingService service
+@{
+    Setting setting = await service.GetSettingAsync();
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -21,8 +25,20 @@
             <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Explore</a></li>
             @* alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, weber Landing page" *@
-            <li class="nav-item"><a href="#" class="nav-link"><img src="~/assets/imgs/placeholder.svg" ></a></li>
+            <li class="nav-item"><a href="#" class="nav-link"><img src="~/@setting.logo" ></a></li>
             <li class="nav-item"><a href="#" class="nav-link">Journal</a></li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li class="nav-item"><a class="nav-link">@User.Identity.Name</a></li>
+                <li class="nav-item"><a asp-action="Logout" asp-area="" asp-controller="Auth" class="nav-link">Logout</a></li>
+                <li class="nav-item"><a asp-action="Index" asp-area="Admin" asp-controller="Home" class="nav-link">Admin Panel</a></li>
+            }
+            else
+            {
+                <li class="nav-item"><a asp-action="Login" asp-area="" asp-controller="Auth" class="nav-link">Login</a></li>
+                <li class="nav-item"><a asp-action="Register" asp-area="" asp-controller="Auth" class="nav-link">Register</a></li>
+
+            }
             <li class="nav-item search">
                 <a href="javascript:void(0)" class="nav-link search-toggle"><i class="ti-search"></i> Search</a>
                 <div class="search-wrapper">

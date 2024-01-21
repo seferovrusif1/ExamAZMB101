@@ -22,6 +22,18 @@ namespace WebApplication1
                 opt.Password.RequireNonAlphanumeric = false;
                 opt.User.RequireUniqueEmail = false;
             }).AddDefaultTokenProviders().AddEntityFrameworkStores<Exam21JanDBContext>();
+
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                // Cookie settings
+
+                options.LoginPath = "/Auth/Login";
+                options.AccessDeniedPath = "/Auth/Login";
+            });
+
+
+            builder.Services.AddScoped<SettingService>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -32,7 +44,7 @@ namespace WebApplication1
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllerRoute(
             name: "areas",

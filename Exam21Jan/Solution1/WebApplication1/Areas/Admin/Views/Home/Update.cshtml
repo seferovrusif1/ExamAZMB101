@@ -11,6 +11,8 @@
         <label class="form-label">Description</label>
         <span asp-validation-for="Description" class="text-danger"></span>
     </div>
+    <label class="form-label">LastImage</label>
+    <img src="~/@Model.LastImg" width="80px" />
     <div data-mdb-input-init asp-class="form-outline mb-4">
         <input type="file" accept="image/*" asp-for="ImagePath" id="form4Example1" class="form-control" />
         <label class="form-label">ImagePath</label>
